@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
+header,
+section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 200px auto;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+header {
+  display: grid;
+  grid-template-columns: 1fr 300px;
   align-items: center;
+  box-shadow: none;
+  padding: 20px;
+  border-radius: 5px;
+  transition: box-shadow 1s;
+}
+.header {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1);
+}
+header div:first-child {
+  height: 100px;
+}
+header img {
+  width: 100%;
+  border-radius: 50%;
+}
+header h1 {
+  font-size: 42px;
+  font-weight: 400;
+}
+header h2 {
+  font-weight: 400;
+}
+.slide {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding: 10px;
+}
+
+.slideLeftLine {
+  width: 2px;
+  height: 200px;
+  background-color: #364fc7;
+  float: right;
+}
+.dotContainer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  /* width: 150px; */
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #5f3dc4;
+  z-index: 100;
+  transition: background-color 0.5s;
+}
+.dot_1 {
+  transform: translate(10px, 50px);
+}
+.dot_2 {
+  transform: translate(10px, 100px);
+}
+
+.slideRight {
+  width: 100%;
+  padding: 0 10px;
+  /* max-width: 800px; */
+}
+.slideRight p {
+  font-size: 18px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.card {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  max-height: 300px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.expandProjectListBtn {
+  width: 100%;
+  max-width: 300px;
+  height: 50px;
+  border: none;
+  background-color: black;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  cursor: pointer;
+  justify-self: center;
 }
