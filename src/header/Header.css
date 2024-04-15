@@ -1,0 +1,116 @@
+header {
+  width: 100%;
+  max-width: 180rem;
+  margin: 7.5rem auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 15rem;
+}
+.headerText {
+  width: 100%;
+  max-width: 100rem;
+}
+
+.headParagraph,
+.headLinkContainer {
+  font-size: 2.5rem;
+  font-weight: 200 !important;
+  margin: 1.5rem 0;
+  position: relative;
+  left: -5rem;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.headLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 3px solid #d6336c;
+  padding: 0.5rem 1rem;
+  transition: all 0.5s ease;
+  font-weight: 300;
+  z-index: 999;
+}
+.headLinkSupport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 192px;
+  height: 100%;
+  height: 47px;
+  border: 1px solid #d6336c !important;
+  border-top: none !important;
+  border-left: none !important;
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+.headContainer:hover .headLink {
+  /* transform: translate(-1rem, -1rem); */
+  top: -1rem;
+  left: -1rem;
+}
+.headContainer:hover .headLinkSupport {
+  left: 1rem;
+}
+
+/* headlink end */
+.headMain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  transform: translate(-100px, 50px);
+  filter: blur(90px);
+  background-color: #d6336c;
+  z-index: -1;
+}
+
+.revealHeadParagraph {
+  opacity: 1;
+  left: 0;
+}
+
+.headerImageContainer {
+  position: relative;
+  width: 35rem;
+  height: 35rem;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.headerImageContainer div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-15deg);
+}
+.headerImageMain {
+  background-image: url("../images/myProfile.jpg");
+  background-size: cover;
+  border: 5px solid #2e4a6f;
+  z-index: 2;
+  transition: transform 1s ease;
+}
+.headerImageMainTransformed {
+  transform: translate(-20px, -10px) rotate(-15deg) !important;
+}
+.headerImageSupport {
+  background-color: #2e4a6f;
+  z-index: 1;
+}
+.headerImageSupport::before {
+  content: "";
+  position: absolute;
+  top: 5rem;
+  left: 5rem;
+  width: 100%;
+  height: 100%;
+  background-color: #2e4a6f;
+  filter: blur(100px);
+  z-index: -1;
+}

@@ -1,14 +1,91 @@
 import "./App.css";
-import Header from "./Header";
+import Navigation from "././navigation/Navigation";
+import Header from "././header/Header";
 import SlideBuild from "././slide/SliderBuilder";
 import CardBuilder from "././cards/CardBuild";
-
+import clicker from ".././src/images/clicker.png";
+import { useState } from "react";
 export default function App() {
+  const [loadAnimation, setLoadAnimation] = useState(0);
+  const [loadSmallAnimation, setLoadSmallAnimation] = useState(0);
+
+  function triggerLoadAnimation() {
+    setTimeout(() => setLoadAnimation(1), 1000);
+    setTimeout(() => setLoadSmallAnimation(1), 2000);
+    setTimeout(() => setLoadSmallAnimation(2), 2200);
+    setTimeout(() => setLoadSmallAnimation(3), 2400);
+    setTimeout(() => setLoadSmallAnimation(4), 2600);
+
+    setTimeout(() => setLoadAnimation(2), 2000);
+
+    setTimeout(() => setLoadAnimation(3), 2500);
+
+    setTimeout(() => setLoadAnimation(4), 3000);
+
+    setTimeout(() => setLoadAnimation(5), 3500);
+
+    setTimeout(() => setLoadAnimation(6), 4000);
+    setTimeout(() => setLoadAnimation(7), 4300);
+    setTimeout(() => setLoadAnimation(8), 4600);
+    setTimeout(() => setLoadAnimation(9), 4900);
+    setTimeout(() => setLoadAnimation(10), 5200);
+  }
+  window.onload = () => triggerLoadAnimation();
+
   return (
     <>
-      <Header />
-      <SlideBuild />
-      <CardBuilder />
+      <Navigation loadAnimation={loadAnimation} />
+      <Header loadAnimation={loadAnimation} />
+      <SocialMedia loadSmallAnimation={loadSmallAnimation} />
+      <Clicker loadAnimation={loadAnimation} />
     </>
+  );
+}
+
+function SocialMedia({ loadSmallAnimation }) {
+  return (
+    <div className={"socialMediaContainer"}>
+      <ion-icon
+        style={{
+          opacity: loadSmallAnimation >= 4 ? "1" : "0",
+          transform: loadSmallAnimation >= 4 ? "translateY(0px)" : "",
+        }}
+        name="mail-outline"
+      ></ion-icon>
+      <ion-icon
+        style={{
+          opacity: loadSmallAnimation >= 3 ? "1" : "0",
+          transform: loadSmallAnimation >= 3 ? "translateY(0px)" : "",
+        }}
+        name="logo-github"
+      ></ion-icon>
+      <ion-icon
+        style={{
+          opacity: loadSmallAnimation >= 2 ? "1" : "0",
+          transform: loadSmallAnimation >= 2 ? "translateY(0px)" : "",
+        }}
+        name="logo-linkedin"
+      ></ion-icon>
+      <div
+        className={
+          "socialMediaVerticalLine" +
+          (loadSmallAnimation >= 1 ? " socialMediaExpandLine" : "")
+        }
+      ></div>
+    </div>
+  );
+}
+
+function Clicker({ loadAnimation }) {
+  return (
+    <div
+      className="clickerContainer"
+      style={{ opacity: loadAnimation > 2 ? "1" : "0" }}
+    >
+      <img src={clicker} alt="" />
+      <a href="#">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </a>
+    </div>
   );
 }

@@ -1,0 +1,123 @@
+/* nav-start */
+.navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 180rem;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  transition: all 0.5s ease;
+}
+
+.navigation div:nth-child(odd) {
+  height: 0px;
+  width: 0px;
+  border-right: none;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+}
+.navigation div:last-child {
+  justify-self: start;
+  border-left: none;
+}
+.navigation div:last-child ul li {
+  opacity: 0;
+}
+.navigation div:nth-child(2) {
+  width: 0px;
+  height: 0px;
+  background-color: #2e4a6f;
+  border-radius: 50%;
+  justify-self: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  transition: all 0.5s ease;
+}
+
+h1 {
+  position: relative; /* Ensure the pseudo-element is positioned relative to the <h1> */
+  font-size: 2.5rem;
+  font-weight: 200;
+  opacity: 0;
+  z-index: 1; /* Ensure the text is on top of the pseudo-element */
+}
+
+h1::before,
+.navLink::before {
+  content: ""; /* Required for pseudo-elements */
+
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  height: 0;
+  width: 0;
+  background-color: #2e4a6f;
+  filter: blur(16px); /* Apply blur effect to the pseudo-element */
+  z-index: -1; /* Ensure the pseudo-element is behind the text */
+  opacity: 0; /* Initially hide the pseudo-element */
+  text-align: center;
+  transition: all 0.5s;
+}
+
+h1:hover::before,
+.navLink:hover::before {
+  opacity: 1; /* Show the pseudo-element when hovering */
+  height: 100%;
+  width: 100%;
+}
+
+.navigation div {
+  border-color: #2e4a6f;
+  transition: all 1.5s;
+}
+.leftNav {
+  border: 2px solid #2e4a6f;
+  width: 100% !important;
+  /* padding: 0 6.5rem !important; */
+}
+.centerNav {
+  width: 20px !important;
+  height: 20px !important;
+}
+.rightNav {
+  border: 2px solid #2e4a6f;
+  border-right: 2px solid #2e4a6f;
+  width: 100% !important;
+  /* padding: 0 6.5rem !important; */
+}
+.rightNav ul {
+  width: 100%;
+  display: flex;
+  gap: 8rem;
+  list-style: none;
+}
+.rightNav ul li {
+  position: relative;
+}
+.rightNav ul li a {
+  font-size: 2rem;
+  font-weight: 200;
+  text-decoration: none;
+}
+
+.exit {
+  opacity: 0 !important;
+}
+
+.navHeightExpand {
+  height: 60px !important;
+}
+
+.borderLess {
+  border-color: transparent !important;
+}
+.name {
+  opacity: 1 !important;
+  transition: opacity 1s !important;
+}
+/* nav-end */

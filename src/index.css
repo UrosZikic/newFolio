@@ -4,16 +4,25 @@
   box-sizing: border-box;
   color: white;
 }
+html {
+  font-size: 62.5%;
+}
 
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to bottom right, #212529, #1971c2, #212529);
+  background-color: #111821;
+  transition: background-color 2s;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+li {
+  list-style: none;
+  font-weight: 300;
 }
