@@ -11,7 +11,7 @@
   transition: all 0.5s ease;
 }
 
-.navigation div:nth-child(odd) {
+.navigation .navigationChild:nth-child(odd) {
   height: 0px;
   width: 0px;
   border-right: none;
@@ -19,14 +19,15 @@
   display: flex;
   align-items: center;
 }
-.navigation div:last-child {
+.navigation .navigationChild:nth-child(3) {
   justify-self: start;
   border-left: none;
+  border-right: 1px solid #2e4a6f;
 }
-.navigation div:last-child ul li {
+.navigation .navigationChild:last-child ul li {
   opacity: 0;
 }
-.navigation div:nth-child(2) {
+.navigation .navigationChild:nth-child(2) {
   width: 0px;
   height: 0px;
   background-color: #2e4a6f;
@@ -71,7 +72,7 @@ h1:hover::before,
   width: 100%;
 }
 
-.navigation div {
+.navigation .navigationChild {
   border-color: #2e4a6f;
   transition: all 1.5s;
 }
@@ -116,8 +117,49 @@ h1:hover::before,
 .borderLess {
   border-color: transparent !important;
 }
+
 .name {
   opacity: 1 !important;
-  transition: opacity 1s !important;
+  transition: opacity 1s ease !important;
+}
+.disappear {
+  opacity: 0 !important;
+}
+.appear {
+  opacity: 1 !important;
+  transition: opacity 2s ease;
+}
+
+.navMenuIcon {
+  width: 100%;
+  max-width: 50px;
+  height: 40px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+}
+.navMenuIcon div {
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 1 ease;
+}
+.navMenuIcon div:first-child {
+  width: 36px;
+  height: 2px;
+}
+.navMenuIcon div:last-child {
+  width: 18px;
+  height: 2px;
 }
 /* nav-end */
+
+@media only screen and (max-width: 900px) {
+  .rightNav {
+    justify-content: end;
+  }
+  .navMenuIcon {
+    display: flex !important;
+    justify-self: end;
+  }
+}

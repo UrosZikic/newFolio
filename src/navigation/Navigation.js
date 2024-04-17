@@ -1,8 +1,9 @@
+import { useState } from "react";
 import "./Navigation.css";
 
-// import { useState } from "react";
+// import { useState, useEffect } from "react";
 
-export default function Navigation({ loadAnimation }) {
+export default function Navigation({ loadAnimation, isWide }) {
   const linkNames = [
     {
       id: 1,
@@ -35,9 +36,10 @@ export default function Navigation({ loadAnimation }) {
     <nav className="navigation">
       <div
         className={
-          (loadAnimation >= 2 ? "leftNav" : "") +
-          (loadAnimation >= 3 ? " navHeightExpand" : "") +
-          (loadAnimation >= 4 ? " borderLess" : "")
+          "navigationChild" +
+          (loadAnimation >= 2 ? " leftNav" : "") +
+          (loadAnimation >= 4 ? " navHeightExpand" : "") +
+          (loadAnimation >= 5 ? " borderLess" : "")
         }
       >
         {" "}
@@ -53,38 +55,63 @@ export default function Navigation({ loadAnimation }) {
 
       <div
         className={
-          (loadAnimation >= 1 ? "centerNav" : "") +
+          "navigationChild" +
+          (loadAnimation >= 1 ? " centerNav" : "") +
           (loadAnimation >= 3 ? " exit" : "")
         }
+        style={{ display: loadAnimation >= 5 ? "none" : "block" }}
       ></div>
+
       <div
         className={
-          (loadAnimation >= 2 ? "rightNav" : "") +
-          (loadAnimation >= 3 ? " navHeightExpand" : "") +
-          (loadAnimation >= 4 ? " borderLess" : "")
+          "navigationChild" +
+          (loadAnimation >= 2 ? " rightNav" : "") +
+          (loadAnimation >= 4 ? " navHeightExpand" : "") +
+          (loadAnimation >= 5 ? " borderLess" : "")
         }
       >
-        <ul
-          style={{
-            display: loadAnimation >= 3 ? "flex" : "none",
-            justifyContent: "end",
-          }}
-        >
-          {linkNames.map((item) => (
-            <NavLink
-              key={item.id}
-              name={item.name}
-              url={item.url}
-              loadAnimation={loadAnimation}
-            />
-          ))}
-        </ul>
+        <div className={!isWide ? " disappear" : " appear"}>
+          {isWide ? (
+            <ul
+              style={{
+                display: loadAnimation >= 3 ? "flex" : "none",
+                justifyContent: "end",
+              }}
+            >
+              {linkNames.map((item, i) => (
+                <NavLink
+                  key={item.id}
+                  name={item.name}
+                  url={item.url}
+                  loadAnimation={loadAnimation}
+                  iteration={i}
+                  isWide={isWide}
+                />
+              ))}
+            </ul>
+          ) : (
+            ""
+          )}
+        </div>
+        <div className={isWide ? " disappear" : " appear"}>
+          {!isWide ? (
+            <div
+              className={"navMenuIcon"}
+              style={{ display: loadAnimation >= 3 ? "flex" : "none" }}
+            >
+              <div style={{ opacity: loadAnimation >= 5 ? "1" : "0" }}></div>
+              <div style={{ opacity: loadAnimation >= 5 ? "1" : "0" }}></div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </nav>
   );
 }
 
-function NavLink({ name, url, loadAnimation }) {
+function NavLink({ name, url, loadAnimation, iteration, isWide }) {
   return (
     <li className={loadAnimation >= 5 ? "name" : ""}>
       <a className="navLink" href={url}>

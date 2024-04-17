@@ -26,9 +26,12 @@ header {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  max-width: 200px;
+  height: 45px;
   border: 3px solid #d6336c;
   padding: 0.5rem 1rem;
-  transition: all 0.5s ease;
+  transition: top 0.5s ease, left 0.5s ease;
   font-weight: 300;
   z-index: 999;
 }
@@ -37,9 +40,8 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  max-width: 192px;
-  height: 100%;
-  height: 47px;
+  max-width: 200px;
+  height: 45px;
   border: 1px solid #d6336c !important;
   border-top: none !important;
   border-left: none !important;
@@ -113,4 +115,101 @@ header {
   background-color: #2e4a6f;
   filter: blur(100px);
   z-index: -1;
+}
+
+@media only screen and (max-width: 1500px) {
+  .headParagraph,
+  .headLinkContainer {
+    font-size: 2rem;
+  }
+  .headerText {
+    max-width: 80rem;
+  }
+  .headerImageContainer {
+    width: 25rem;
+    height: 25rem;
+  }
+  .headLink,
+  .headLinkSupport {
+    max-width: 160px !important;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .headerText {
+    max-width: 80rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .headLink,
+  .headLinkSupport {
+    max-width: 170px !important;
+  }
+  .headParagraph,
+  .headLinkContainer {
+    font-size: 2.1rem;
+  }
+  .headerText {
+    max-width: 60rem;
+  }
+  .headLink,
+  .headLinkSupport {
+    height: 40px !important;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem !important;
+    margin: 0 auto !important;
+  }
+  .socialMediaContainer {
+    display: none;
+  }
+  .headerText {
+    max-width: 80rem;
+  }
+
+  .headerImageContainer {
+    width: 30rem;
+    height: 30rem;
+  }
+  .clickerContainer {
+    margin-top: 3rem;
+  }
+  .headLink,
+  .headLinkSupport {
+    height: 42px !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .headerImageContainer {
+    width: 20rem;
+    height: 20rem;
+  }
+  .headParagraph,
+  .headLinkContainer {
+    font-size: 1.8rem;
+  }
+  .headLink,
+  .headLinkSupport {
+    height: 40px !important;
+    max-width: 150px !important;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .headerImageContainer {
+    width: 15rem;
+    height: 15rem;
+  }
+  .headParagraph,
+  .headLinkContainer {
+    font-size: 1.5rem;
+  }
+  .headLink,
+  .headLinkSupport {
+    height: 35px !important;
+    max-width: 135px !important;
+  }
 }

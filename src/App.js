@@ -1,13 +1,36 @@
 import "./App.css";
 import Navigation from "././navigation/Navigation";
 import Header from "././header/Header";
-import SlideBuild from "././slide/SliderBuilder";
-import CardBuilder from "././cards/CardBuild";
+// import SlideBuild from "././slide/SliderBuilder";
+// import CardBuilder from "././cards/CardBuild";
 import clicker from ".././src/images/clicker.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import debounce from "lodash/debounce";
 export default function App() {
+  // onLoad width
+  let currentWidth = window.innerWidth;
   const [loadAnimation, setLoadAnimation] = useState(0);
   const [loadSmallAnimation, setLoadSmallAnimation] = useState(0);
+  const [isWide, setIsWide] = useState(currentWidth > 900);
+  const [animeLink, setAnimeLink] = useState(false);
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setIsWide(window.innerWidth > 900);
+    }, 250);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  function updateWidth() {
+    currentWidth = window.innerWidth;
+    setIsWide(currentWidth > 900);
+  }
+  window.addEventListener("resize", () => updateWidth());
 
   function triggerLoadAnimation() {
     setTimeout(() => setLoadAnimation(1), 1000);
@@ -34,8 +57,8 @@ export default function App() {
 
   return (
     <>
-      <Navigation loadAnimation={loadAnimation} />
-      <Header loadAnimation={loadAnimation} />
+      <Navigation loadAnimation={loadAnimation} isWide={isWide} />
+      <Header loadAnimation={loadAnimation} animeLink={animeLink} />
       <SocialMedia loadSmallAnimation={loadSmallAnimation} />
       <Clicker loadAnimation={loadAnimation} />
     </>
