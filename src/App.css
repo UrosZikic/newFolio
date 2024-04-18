@@ -25,13 +25,14 @@
   transform: translateY(0px);
 }
 .socialMediaExpandLine {
-  height: 10rem;
+  height: 14rem;
 }
 /* clicker */
 .clickerContainer {
   margin-top: 15rem;
   position: absolute;
   left: 50%;
+  bottom: 0;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -48,6 +49,7 @@
 .clickerContainer a {
   display: flex;
   flex-direction: column;
+  align-items: center;
   cursor: pointer !important;
 }
 
@@ -69,4 +71,93 @@
   animation-name: click;
   animation-iteration-count: infinite;
   animation-duration: 2.5s;
+}
+
+/* menu */
+.menuMain {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  width: 100%;
+  background-color: #111821;
+  z-index: 9999;
+  padding: 5rem 0;
+}
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 7.5rem;
+}
+.removeFromSight {
+  display: none;
+}
+.menuContainer li {
+  height: 5rem;
+  width: 100%;
+  max-width: 50rem;
+  position: relative;
+  margin-left: -2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lockMenuLi {
+  transform: translateX(-550px);
+}
+.unlockMenuLi {
+  transform: translateX(0);
+  transition: transform 1.5s ease;
+}
+.menuContainer li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: skewX(-40deg);
+  filter: none;
+  border: 2px solid #2e4a6f;
+  border-left: none;
+  border-radius: 0;
+}
+.menuContainer li a {
+  font-size: 2.4rem;
+  font-family: "roboto", "sans-serif";
+  font-weight: 300;
+  text-decoration: none;
+}
+.socialMenu {
+  display: grid;
+  grid-template-columns: 1fr 160px 1fr;
+  align-items: center;
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+}
+.socialMenu div:nth-child(odd) {
+  width: 0px;
+  background-color: #fff;
+  height: 1px;
+  justify-self: start;
+  transition: width 1s ease;
+}
+.socialMenu div:nth-child(2) {
+  opacity: 0;
+  font-size: 3.5rem;
+  display: flex;
+  justify-content: space-around;
+  transition: opacity 1s ease;
+}
+.socialMenu div:last-child {
+  justify-self: end;
+}
+.socialMenuWidth {
+  width: 80% !important;
+}
+.socialMenuOpacity {
+  opacity: 1 !important;
+}
+.socialMenuOpacity ion-icon {
+  opacity: 1 !important;
 }

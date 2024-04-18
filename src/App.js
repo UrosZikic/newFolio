@@ -1,36 +1,136 @@
 import "./App.css";
 import Navigation from "././navigation/Navigation";
+import NavLink from "../src/navigation/navLink/NavLink";
+
 import Header from "././header/Header";
 // import SlideBuild from "././slide/SliderBuilder";
 // import CardBuilder from "././cards/CardBuild";
-import clicker from ".././src/images/clicker.png";
+import About from "./about/About";
 import { useState, useEffect } from "react";
-import debounce from "lodash/debounce";
 export default function App() {
   // onLoad width
   let currentWidth = window.innerWidth;
   const [loadAnimation, setLoadAnimation] = useState(0);
   const [loadSmallAnimation, setLoadSmallAnimation] = useState(0);
   const [isWide, setIsWide] = useState(currentWidth > 900);
-  const [animeLink, setAnimeLink] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [menuAnimation, setMenuAnimation] = useState(0);
+  const [atAbout, setAtAbout] = useState(false);
+
+  const linkNames = [
+    {
+      id: 1,
+      name: "About",
+      url: "#",
+    },
+    {
+      id: 2,
+      name: "Skills",
+      url: "#",
+    },
+    {
+      id: 3,
+      name: "Projects",
+      url: "#",
+    },
+    {
+      id: 4,
+      name: "Contact",
+      url: "#",
+    },
+    {
+      id: 5,
+      name: "Resume",
+      url: "#",
+    },
+  ];
 
   useEffect(() => {
-    const handleResize = debounce(() => {
+    // const handleResize = debounce(() => {
+    function handleResize() {
       setIsWide(window.innerWidth > 900);
-    }, 250);
+      // }, 250);
+    }
 
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isWide]);
 
   function updateWidth() {
-    currentWidth = window.innerWidth;
-    setIsWide(currentWidth > 900);
+    const currentWidth = window.innerWidth;
+    setIsWide((prevIsWide) => {
+      const isWide = currentWidth > 900;
+      if (isWide && !prevIsWide) {
+        setIsClicked(false);
+        document.body.classList.remove("fix");
+      }
+      return isWide;
+    });
   }
   window.addEventListener("resize", () => updateWidth());
+
+  useEffect(() => {
+    if (isClicked) document.body.classList.add("fix");
+    else document.body.classList.remove("fix");
+  }, [isClicked]);
+
+  function triggerMenu() {
+    setMenuAnimation(0);
+
+    setIsClicked((prevIsClicked) => !prevIsClicked);
+
+    (function () {
+      if (isClicked === false) {
+        setTimeout(() => setMenuAnimation(1), 300);
+
+        setTimeout(() => setMenuAnimation(2), 600);
+        setTimeout(() => setMenuAnimation(3), 900);
+        setTimeout(() => setMenuAnimation(4), 1200);
+        setTimeout(() => setMenuAnimation(5), 1500);
+      } else {
+        setMenuAnimation(0);
+      }
+    })();
+  }
+
+  useEffect(() => {
+    const aboutSection = document.querySelector(".aboutSection");
+
+    function triggerAbout() {
+      if (document.documentElement.clientWidth > 1000) {
+        executeAbout(100);
+      } else if (
+        document.documentElement.clientWidth <= 1000 &&
+        document.documentElement.clientWidth > 500
+      ) {
+        executeAbout(0);
+      } else if (
+        document.documentElement.clientWidth <= 500 &&
+        document.documentElement.clientWidth > 390
+      ) {
+        executeAbout(200);
+      } else if (document.documentElement.clientWidth <= 390) {
+        executeAbout(450);
+      }
+    }
+    function executeAbout(add) {
+      if (
+        document.documentElement.scrollTop * 0.9 + add >=
+        aboutSection.scrollHeight
+      ) {
+        setAtAbout(true);
+      }
+    }
+
+    window.addEventListener("scroll", () => triggerAbout());
+
+    return () => {
+      window.removeEventListener("scroll", () => triggerAbout());
+    };
+  }, [atAbout]);
 
   function triggerLoadAnimation() {
     setTimeout(() => setLoadAnimation(1), 1000);
@@ -57,10 +157,24 @@ export default function App() {
 
   return (
     <>
-      <Navigation loadAnimation={loadAnimation} isWide={isWide} />
-      <Header loadAnimation={loadAnimation} animeLink={animeLink} />
+      <Navigation
+        loadAnimation={loadAnimation}
+        isWide={isWide}
+        linkNames={linkNames}
+        triggerMenu={triggerMenu}
+        isClicked={isClicked}
+      />
+      <Menu
+        linkNames={linkNames}
+        loadAnimation={loadAnimation}
+        isWide={isWide}
+        isClicked={isClicked}
+        menuAnimation={menuAnimation}
+      />
+      <Header loadAnimation={loadAnimation} />
       <SocialMedia loadSmallAnimation={loadSmallAnimation} />
-      <Clicker loadAnimation={loadAnimation} />
+
+      <About atAbout={atAbout} />
     </>
   );
 }
@@ -68,6 +182,55 @@ export default function App() {
 function SocialMedia({ loadSmallAnimation }) {
   return (
     <div className={"socialMediaContainer"}>
+      <SocialMediaLinks loadSmallAnimation={loadSmallAnimation} />
+      <div
+        className={
+          "socialMediaVerticalLine" +
+          (loadSmallAnimation >= 1 ? " socialMediaExpandLine" : "")
+        }
+      ></div>
+    </div>
+  );
+}
+
+function Menu({ linkNames, loadAnimation, isWide, isClicked, menuAnimation }) {
+  return (
+    <div
+      className={
+        "menuMain" +
+        (!isClicked ? " removeFromSight" : " ") +
+        (isWide ? " removeFromSight" : " ")
+      }
+    >
+      <ul className={"menuContainer"}>
+        {linkNames.map((item, i) => (
+          <NavLink
+            key={item.id}
+            name={item.name}
+            url={item.url}
+            loadAnimation={loadAnimation}
+            iteration={i}
+            id={item.id}
+            isWide={isWide}
+            menuAnimation={menuAnimation}
+            isClicked={isClicked}
+          />
+        ))}
+      </ul>
+      <div className="socialMenu">
+        <div className={menuAnimation >= 2 ? "socialMenuWidth" : ""}></div>
+        <div className={menuAnimation >= 4 ? "socialMenuOpacity" : ""}>
+          <SocialMediaLinks SocialMediaLinks={SocialMediaLinks} />
+        </div>
+        <div className={menuAnimation >= 2 ? "socialMenuWidth" : ""}></div>
+      </div>
+    </div>
+  );
+}
+
+function SocialMediaLinks({ loadSmallAnimation }) {
+  return (
+    <>
       <ion-icon
         style={{
           opacity: loadSmallAnimation >= 4 ? "1" : "0",
@@ -89,26 +252,6 @@ function SocialMedia({ loadSmallAnimation }) {
         }}
         name="logo-linkedin"
       ></ion-icon>
-      <div
-        className={
-          "socialMediaVerticalLine" +
-          (loadSmallAnimation >= 1 ? " socialMediaExpandLine" : "")
-        }
-      ></div>
-    </div>
-  );
-}
-
-function Clicker({ loadAnimation }) {
-  return (
-    <div
-      className="clickerContainer"
-      style={{ opacity: loadAnimation > 2 ? "1" : "0" }}
-    >
-      <img src={clicker} alt="" />
-      <a href="#">
-        <ion-icon name="chevron-down-outline"></ion-icon>
-      </a>
-    </div>
+    </>
   );
 }

@@ -120,7 +120,7 @@ h1:hover::before,
 
 .name {
   opacity: 1 !important;
-  transition: opacity 1s ease !important;
+  transition: opacity, transform 0.5s ease !important;
 }
 .disappear {
   opacity: 0 !important;
@@ -138,6 +138,8 @@ h1:hover::before,
   flex-direction: column;
   justify-content: space-around;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 .navMenuIcon div {
   background-color: #fff;
@@ -152,6 +154,9 @@ h1:hover::before,
   width: 18px;
   height: 2px;
 }
+.disableMenu {
+  pointer-events: none;
+}
 /* nav-end */
 
 @media only screen and (max-width: 900px) {
@@ -161,5 +166,13 @@ h1:hover::before,
   .navMenuIcon {
     display: flex !important;
     justify-self: end;
+  }
+  header {
+    padding: 5rem 4rem 15rem 4rem !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  header {
+    padding: 0rem 4rem 10rem 4rem !important;
   }
 }

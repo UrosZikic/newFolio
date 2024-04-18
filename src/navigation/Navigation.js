@@ -1,37 +1,14 @@
-import { useState } from "react";
 import "./Navigation.css";
+import NavLink from "./navLink/NavLink";
 
 // import { useState, useEffect } from "react";
 
-export default function Navigation({ loadAnimation, isWide }) {
-  const linkNames = [
-    {
-      id: 1,
-      name: "About",
-      url: "#",
-    },
-    {
-      id: 2,
-      name: "Skills",
-      url: "#",
-    },
-    {
-      id: 3,
-      name: "Projects",
-      url: "#",
-    },
-    {
-      id: 4,
-      name: "Contact",
-      url: "#",
-    },
-    {
-      id: 5,
-      name: "Resume",
-      url: "#",
-    },
-  ];
-
+export default function Navigation({
+  loadAnimation,
+  isWide,
+  linkNames,
+  triggerMenu,
+}) {
   return (
     <nav className="navigation">
       <div
@@ -95,28 +72,21 @@ export default function Navigation({ loadAnimation, isWide }) {
         </div>
         <div className={isWide ? " disappear" : " appear"}>
           {!isWide ? (
-            <div
-              className={"navMenuIcon"}
+            <button
+              onClick={() => triggerMenu()}
+              className={
+                "navMenuIcon" + (loadAnimation >= 9 ? " " : " disableMenu")
+              }
               style={{ display: loadAnimation >= 3 ? "flex" : "none" }}
             >
               <div style={{ opacity: loadAnimation >= 5 ? "1" : "0" }}></div>
               <div style={{ opacity: loadAnimation >= 5 ? "1" : "0" }}></div>
-            </div>
+            </button>
           ) : (
             ""
           )}
         </div>
       </div>
     </nav>
-  );
-}
-
-function NavLink({ name, url, loadAnimation, iteration, isWide }) {
-  return (
-    <li className={loadAnimation >= 5 ? "name" : ""}>
-      <a className="navLink" href={url}>
-        {name}
-      </a>
-    </li>
   );
 }
