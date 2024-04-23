@@ -1,0 +1,104 @@
+.headSkills {
+  padding-top: 5rem;
+}
+
+.skillContainer {
+  position: relative;
+  z-index: 1;
+  max-width: 140rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 5rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.skillContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  z-index: -1;
+  background-color: #3e68a0;
+  filter: blur(100px);
+  border-radius: 50%;
+}
+.skillContainer div {
+  opacity: 0;
+  transform: translateX(-20px);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #223247;
+}
+.skillContainer div img {
+  width: 4rem;
+  height: 4rem;
+}
+.skillContainer p {
+  font-size: 2.4rem;
+  font-family: roboto, sans-serif;
+  padding: 1rem 2rem;
+  color: #d6336c;
+}
+.headSkills {
+  font-size: 4.6rem;
+  font-weight: 300;
+  text-align: center;
+}
+.skillVisible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition: opacity, transform 0.3s;
+}
+.skillVisible:hover {
+  transform: scale(1.1) !important;
+}
+
+@media only screen and (max-width: 450px) {
+  .skillContainer {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+  .skillContainer p {
+    font-size: 2rem;
+  }
+  .skillContainer div {
+    grid-template-columns: 1fr 3rem;
+  }
+  .skillContainer div img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+@media only screen and (max-width: 390px) {
+  .skillContainer {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .skillContainer p {
+    font-size: 1.6rem;
+  }
+  .skillContainer div {
+    grid-template-columns: 1fr 2rem;
+  }
+  .skillContainer div img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .aboutSection div:last-child::after,
+  .aboutSection div:first-child::after {
+    left: 0 !important;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .skillContainer {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}

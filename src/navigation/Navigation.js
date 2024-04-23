@@ -1,7 +1,7 @@
 import "./Navigation.css";
 import NavLink from "./navLink/NavLink";
 
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navigation({
   loadAnimation,
@@ -10,13 +10,13 @@ export default function Navigation({
   triggerMenu,
 }) {
   return (
-    <nav className="navigation">
+    <nav className="navigation" id="nav">
       <div
         className={
           "navigationChild" +
           (loadAnimation >= 2 ? " leftNav" : "") +
-          (loadAnimation >= 4 ? " navHeightExpand" : "") +
-          (loadAnimation >= 5 ? " borderLess" : "")
+          (loadAnimation >= 6 ? " navHeightExpand" : "") +
+          (loadAnimation >= 7 ? " borderLess" : "")
         }
       >
         {" "}
@@ -24,7 +24,7 @@ export default function Navigation({
           style={{
             display: loadAnimation >= 3 ? "block" : "none",
           }}
-          className={loadAnimation >= 5 ? "name" : ""}
+          className={loadAnimation >= 7 ? "name" : ""}
         >
           Uroš Žikić
         </h1>
@@ -34,7 +34,7 @@ export default function Navigation({
         className={
           "navigationChild" +
           (loadAnimation >= 1 ? " centerNav" : "") +
-          (loadAnimation >= 3 ? " exit" : "")
+          (loadAnimation >= 4 ? " exit" : "")
         }
         style={{ display: loadAnimation >= 5 ? "none" : "block" }}
       ></div>
@@ -43,8 +43,8 @@ export default function Navigation({
         className={
           "navigationChild" +
           (loadAnimation >= 2 ? " rightNav" : "") +
-          (loadAnimation >= 4 ? " navHeightExpand" : "") +
-          (loadAnimation >= 5 ? " borderLess" : "")
+          (loadAnimation >= 6 ? " navHeightExpand" : "") +
+          (loadAnimation >= 7 ? " borderLess" : "")
         }
       >
         <div className={!isWide ? " disappear" : " appear"}>
@@ -63,6 +63,7 @@ export default function Navigation({
                   loadAnimation={loadAnimation}
                   iteration={i}
                   isWide={isWide}
+                  menuLink={false}
                 />
               ))}
             </ul>
@@ -70,7 +71,15 @@ export default function Navigation({
             ""
           )}
         </div>
-        <div className={isWide ? " disappear" : " appear"}>
+        <div
+          className={
+            !isWide
+              ? loadAnimation >= 7
+                ? " appear"
+                : " disappear"
+              : " disappear"
+          }
+        >
           {!isWide ? (
             <button
               onClick={() => triggerMenu()}

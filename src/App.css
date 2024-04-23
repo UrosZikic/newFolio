@@ -43,6 +43,7 @@
 }
 .clickerContainer img {
   width: 50px;
+  height: 50px;
   stroke: white;
   cursor: pointer;
 }
@@ -72,92 +73,26 @@
   animation-iteration-count: infinite;
   animation-duration: 2.5s;
 }
-
-/* menu */
-.menuMain {
-  position: fixed;
-  top: 70px;
-  bottom: 0;
-  width: 100%;
-  background-color: #111821;
-  z-index: 9999;
-  padding: 5rem 0;
+.bottomLink {
+  opacity: 1 !important;
 }
-.menuContainer {
+.bottomLink a {
+  width: 100%;
+  max-width: 80px;
+  height: 80px;
   display: flex;
   flex-direction: column;
-  gap: 7.5rem;
-}
-.removeFromSight {
-  display: none;
-}
-.menuContainer li {
-  height: 5rem;
-  width: 100%;
-  max-width: 50rem;
-  position: relative;
-  margin-left: -2rem;
-  display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5rem auto;
 }
-.lockMenuLi {
-  transform: translateX(-550px);
+.bottomLink a img {
+  width: 50px !important;
+  height: 50px !important;
 }
-.unlockMenuLi {
-  transform: translateX(0);
-  transition: transform 1.5s ease;
-}
-.menuContainer li::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  transform: skewX(-40deg);
-  filter: none;
-  border: 2px solid #2e4a6f;
-  border-left: none;
-  border-radius: 0;
-}
-.menuContainer li a {
-  font-size: 2.4rem;
-  font-family: "roboto", "sans-serif";
-  font-weight: 300;
-  text-decoration: none;
-}
-.socialMenu {
-  display: grid;
-  grid-template-columns: 1fr 160px 1fr;
-  align-items: center;
-  position: absolute;
-  bottom: 1rem;
-  width: 100%;
-}
-.socialMenu div:nth-child(odd) {
-  width: 0px;
-  background-color: #fff;
-  height: 1px;
-  justify-self: start;
-  transition: width 1s ease;
-}
-.socialMenu div:nth-child(2) {
-  opacity: 0;
-  font-size: 3.5rem;
-  display: flex;
-  justify-content: space-around;
-  transition: opacity 1s ease;
-}
-.socialMenu div:last-child {
-  justify-self: end;
-}
-.socialMenuWidth {
-  width: 80% !important;
-}
-.socialMenuOpacity {
-  opacity: 1 !important;
-}
-.socialMenuOpacity ion-icon {
-  opacity: 1 !important;
+.bottomLink ion-icon {
+  font-size: 3rem;
+  animation-name: click;
+  animation-iteration-count: infinite;
+  animation-duration: 2.5s;
 }

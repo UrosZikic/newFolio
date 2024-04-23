@@ -1,0 +1,129 @@
+.projectContainer {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: 3rem;
+  padding: 1rem;
+  opacity: 0 !important;
+  transform: translateY(20rem);
+}
+.showProject {
+  transition: all 1s ease;
+  opacity: 1 !important;
+  transform: translateY(0);
+}
+.projectContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: 2px solid #339af0;
+  border-radius: 15px;
+}
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  gap: 3rem;
+  justify-content: end;
+}
+
+.projectInfo h3 {
+  font-size: 4.6rem;
+}
+.projectInfo p {
+  font-size: 2rem;
+  color: #339af0;
+}
+.projectInfo a {
+  font-size: 3rem;
+  border: 1px solid #339af0;
+  border-top-width: 2px;
+  border-left-width: 2px;
+  background-color: #111821;
+  width: 100%;
+  max-width: 12rem;
+  text-align: center;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: #339af0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  transform: translate(0);
+
+  transition: all 0.5s ease;
+  z-index: 2 !important ;
+}
+.projectInfo a:hover {
+  transform: translate(-1rem);
+}
+
+.projectInfo a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1 !important;
+  border: 1px solid #339af0;
+  border-top: none !important;
+  border-left: none !important;
+  transform: translate(0);
+  transition: all 1s ease;
+}
+.projectInfo a:hover::after {
+  border: 1px solid #339af0;
+  border-top: none !important;
+  border-left: none !important;
+  transform: translate(1rem, 1rem);
+}
+.projectInfo a ion-icon,
+.projectInfo a p {
+  font-size: 2.8rem;
+}
+
+@media only screen and (max-width: 1380px) {
+  .projectSection {
+    max-width: 100rem;
+  }
+  .projectContainer {
+    grid-template-columns: 300px 1fr;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .projectContainer {
+    grid-template-columns: 500px;
+    justify-content: center;
+  }
+  .projectContainer img {
+    max-width: 300px;
+    max-height: 300px;
+    justify-self: center;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .projectSection {
+    gap: 6rem;
+  }
+  .projectContainer {
+    grid-template-columns: 350px;
+  }
+  .projectInfo h3 {
+    font-size: 4rem;
+  }
+  .projectInfo p,
+  .projectInfo a {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .projectContainer {
+    grid-template-columns: 300px;
+  }
+  .projectInfo p,
+  .projectInfo a {
+    font-size: 1.6rem;
+  }
+}

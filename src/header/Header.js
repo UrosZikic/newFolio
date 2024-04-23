@@ -1,13 +1,13 @@
 import "./Header.css";
-import profile from ".././images/myProfile.jpg";
-import clicker from ".././images/clicker.png";
+import Clicker from "./clicker/Clicker";
+import resume from "../../src/Zikic-Resume.pdf";
 
 export default function Header({ loadAnimation }) {
   return (
     <header>
       <HeaderText loadAnimation={loadAnimation} />
       <HeaderImage loadAnimation={loadAnimation} />
-      <Clicker loadAnimation={loadAnimation} />
+      <Clicker loadAnimation={loadAnimation} position={0} />
     </header>
   );
 }
@@ -61,7 +61,9 @@ function HeaderText({ loadAnimation }) {
       >
         <a
           className={"headLink"}
-          href="#"
+          href={resume}
+          target="_blank"
+          rel="noreferrer"
           style={{
             color: "#d6336c",
             textDecoration: "none",
@@ -89,21 +91,6 @@ function HeaderImage({ loadAnimation }) {
         }
       ></div>
       <div className="headerImageSupport"></div>
-    </div>
-  );
-}
-
-function Clicker({ loadAnimation }) {
-  return (
-    <div
-      className="clickerContainer"
-      style={{ opacity: loadAnimation > 2 ? "1" : "0" }}
-    >
-      <a href={"#aboutId"}>
-        <img src={clicker} alt="" />
-
-        <ion-icon name="chevron-down-outline"></ion-icon>
-      </a>
     </div>
   );
 }

@@ -1,7 +1,61 @@
-import { useEffect, useState } from "react";
 import "./About.css";
+import { useEffect, useState } from "react";
+import debounce from "lodash/debounce";
 
-export default function About({ atAbout }) {
+export default function About() {
+  const [atAbout, setAtAbout] = useState(false);
+
+  //
+  function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+  //
+
+  //
+  useEffect(() => {
+    const aboutSection = document.querySelector(".aboutSection");
+
+    function executeAbout(add) {
+      if (
+        document.documentElement.scrollTop * 0.9 + add >=
+        aboutSection.scrollHeight
+      ) {
+        setAtAbout(true);
+      }
+    }
+
+    function onScroll() {
+      const bodyWidth = window.innerWidth;
+
+      if (!atAbout) {
+        if (bodyWidth > 1000) {
+          executeAbout(0);
+        } else if (bodyWidth <= 1000 && bodyWidth > 600) {
+          executeAbout(150);
+        } else if (bodyWidth <= 600 && bodyWidth > 400) {
+          executeAbout(300);
+        } else {
+          executeAbout(350);
+        }
+      }
+    }
+
+    const handleScroll = debounce(onScroll, 50);
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [atAbout]);
+  //
+
   return (
     <>
       <h2
