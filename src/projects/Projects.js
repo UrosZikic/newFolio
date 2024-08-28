@@ -22,7 +22,7 @@ export default function Projects() {
       tools: "PHP, SQL, JavaScript",
       description:
         "C&B is an e-commerce web store. It offers deals on various video game titles.",
-      url: "https://cbonlinestore.000webhostapp.com/",
+      url: "http://e-shop-project.infinityfreeapp.com/index.php",
     },
     {
       imageSource: movie,
