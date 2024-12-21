@@ -18,11 +18,11 @@ export default function Projects() {
     },
     {
       imageSource: cb,
-      headline: "C&B",
-      tools: "PHP, SQL, JavaScript",
+      headline: "Gamebot",
+      tools: "React,PHP, SQL, SCSS",
       description:
         "C&B is an e-commerce web store. It offers deals on various video game titles.",
-      url: "http://e-shop-project.infinityfreeapp.com/index.php",
+      url: "https://ecommercereact.infinityfreeapp.com/",
     },
     {
       imageSource: movie,
